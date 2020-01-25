@@ -6,6 +6,6 @@ class account(models.Model) :
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     job = models.CharField(max_length=20)
-    passwd = models.CharField(max_length = 100)
+    passwd = models.CharField(max_length = 300)
 
 
