@@ -45,12 +45,13 @@
                                     <th>Username</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Posts</th>
+                                    <th>Job</th>
+                                    <th>Moblie</th>
                                     <th>Edit</th>
                                   </tr>
                                 </thead>
                                 <tbody>
+                                {% for things in all %}
                                   <tr>
                                     <td>
                                         <div class="form-check-inline">
@@ -59,36 +60,19 @@
                                            </label>
                                        </div>
                                     </td>
-                                    <td><a href="#"><small>Johnyahua</small></a></td>
+                                    <td><a href="#"><small>{{things.name}}</small></a></td>
                                     <td><small>Doe</small></td>
-                                    <td><small>john@example.com</small></td>
-                                    <td><small>Admin</small></td>
-                                    <td><a href="#"><small>5</small></a></td>
+                                    <td><small>{{things.email}}</small></td>
+                                    <td><small>{{things.job}}</small></td>
+                                    <td><a href="#"><small>{{things.phone}}</small></a></td>
                                     <td>
                                         <a href="#"><i class="fa fa-pencil-square-o"></i></a>
                                         <a href="#"><i class="fa fa-eye"></i></a>
                                         <a href="#"><i class="fa fa-trash"></i></a>
                                     </td>
                                   </tr>
-                                  <tr>
-                                    <td>
-                                        <div class="form-check-inline">
-                                          <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" value="">
-                                           </label>
-                                       </div>
-                                    </td>
-                                    <td><a href="#"><small>Johnyahua</small></a></td>
-                                    <td><small>Doe</small></td>
-                                    <td><small>john@example.com</small></td>
-                                    <td><small>Admin</small></td>
-                                    <td><a href="#"><small>5</small></a></td>
-                                    <td>
-                                        <a href="#"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a href="#"><i class="fa fa-eye"></i></a>
-                                        <a href="#"><i class="fa fa-trash"></i></a>
-                                    </td>
-                                  </tr>
+                                  {% endfor %}
+
 
 
                                 </tbody>

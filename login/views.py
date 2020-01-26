@@ -6,12 +6,17 @@ from .models import account
 @csrf_exempt
 def index(request):
     if ( request.method == "POST"):
-        #Finding the username
+             #Finding the username
         user = request.POST["username"]
         if account.objects.filter(email= user):
+            #getting the user object
             user_obj = account.objects.get(email= user)
+            #matching the user password
             if user_obj.verify_password(request.POST["password"]):
-               return render(request,'dashboard.html')
+                all_thing = account.objects.all()
+                return render(request,'dashboard.html',{
+                       "all" : all_thing }
+                        )
         else:
             print("Wrong password")
             return render(request, 'index.html')
