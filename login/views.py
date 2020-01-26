@@ -6,9 +6,10 @@ from .models import account
 @csrf_exempt
 def index(request):
     if ( request.method == "POST"):
-        log = account.objects.filter(email=request.POST["username"],passwd = request.POST["password"])
-        if log:
-            return render(request,'dashboard.html')
+        #Finding the username
+        if account.objects.filter(email=request.POST["username"]):
+           # if account.objects.verify_password(request.POST["password"]):
+               return render(request,'dashboard.html')
         else:
             return render(request, 'index.html')
 
@@ -17,7 +18,12 @@ def index(request):
 @csrf_exempt
 def register(request):
     if ( request.method == "POST"):
-        account.objects.create(name= request.POST["name"],email=request.POST["email"], phone=request.POST["phone"],job=request.POST["job"],passwd= pbkdf2_sha256.encrypt(request.POST["passwd"],rounds = 12000 , salt_size = 32))
+        account.objects.create(name= request.POST["name"],
+                               email=request.POST["email"],
+                               phone=request.POST["phone"],
+                               job=request.POST["job"],
+                               # Saving the password after encrypting
+                               passwd= pbkdf2_sha256.encrypt(request.POST["passwd"],rounds = 12000 , salt_size = 32))
         return redirect('index')
     else :
         return render(request, 'register.html')
