@@ -7,11 +7,15 @@ from .models import account
 def index(request):
     if ( request.method == "POST"):
         #Finding the username
-        if account.objects.filter(email=request.POST["username"]):
-           # if account.objects.verify_password(request.POST["password"]):
+        user = request.POST["username"]
+        if account.objects.filter(email= user):
+            user_obj = account.objects.get(email= user)
+            if user_obj.verify_password(request.POST["password"]):
                return render(request,'dashboard.html')
         else:
+            print("Wrong password")
             return render(request, 'index.html')
+
 
 
     return render(request, 'index.html')
